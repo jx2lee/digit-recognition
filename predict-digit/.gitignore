@@ -1,0 +1,9 @@
+.DS_Store
+__pycache__/*
+
+# RES FOLDER
+res/*
+
+# TMP FOLDER
+tmp/.DS_Store
+tmp/Fnt

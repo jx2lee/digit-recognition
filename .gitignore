@@ -1,0 +1,15 @@
+# DS_STORE
+*.DS_Store
+cnn-example/**/*.DS_Store
+predict-digit/**/*.DS_Store
+
+# PyCharm
+.idea/
+
+# cnn-example
+cnn-example/checkpoints/
+cnn-example/mnist_graph/
+cnn-example/mnist_data/
+
+# .ipynb_checkpoints
+**/*.ipynb_chekcpoints/
