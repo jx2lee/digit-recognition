@@ -1,15 +1,15 @@
-#!/Users/jj/.virtualenvs/deep/bin/python
+#!/usr/bin/env python
 
 if __name__ == "__main__":
     import sys
-    import model
+    import core.model as model
 
-    TRAIN_DATA_PATH = './tmp/Fnt/'
+    TRAIN_DATA_PATH = 'tmp/Fnt/'
     mode = sys.argv[1]
     if mode == "train":
         EPOCH = int(sys.argv[2])
         BATCH_SIZE = int(sys.argv[3])
-        MODEL_CHECK_POINT = './res/model_checkpoint/LetterCNN.ckpt'
+        MODEL_CHECK_POINT = 'res/model_checkpoint/LetterCNN.ckpt'
         all_x, all_y = model.import_data(TRAIN_DATA_PATH)
         x_train, x_test, y_train, y_test = model.split_data(all_x, all_y)
         model.train_model(MODEL_CHECK_POINT, EPOCH, x_train, y_train, BATCH_SIZE)

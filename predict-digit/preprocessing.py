@@ -1,7 +1,10 @@
-#!/Users/jj/.virtualenvs/deep/bin/python
+#!/usr/bin/env python
 
-BOX_PATH = "./tmp/box/"
-SAVE_PATH = "./res/"
+from core.common import *
+from core.model import *
+
+BOX_PATH = "tmp/box/"
+SAVE_PATH = "res/"
 
 
 def rotate_img(_path, _file):
@@ -179,7 +182,7 @@ if __name__ == '__main__':
                 os.makedirs(os.path.join(SAVE_PATH + 'char/' + file[:-4]))
         except OSError as e:
             if e.errno != errno.EEXIST:
-                print("Failed to create directory, check your path")
+                print_error('Failed to create directory, check your path')
                 raise
 
         img_dir = SAVE_PATH + 'char/' + file[:-4] + '/'

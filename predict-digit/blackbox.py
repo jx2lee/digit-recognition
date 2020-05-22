@@ -1,7 +1,8 @@
-#!/Users/jj/.virtualenvs/deep/bin/python
+#!/usr/bin/env python
+from core.common import *
 
-PATH = "./tmp/"
-RESULT_PATH = "./res/"
+PATH = "tmp/"
+RESULT_PATH = "res/"
 RES_NAME = "blackboxed.jpg"
 
 
@@ -69,7 +70,7 @@ def black_box(input_path):
         '''
 
     cv2.imwrite(RESULT_PATH + input_path[-11:-4] + '_' + RES_NAME, last_img)
-    print('Saving image finished!! ')
+    print_info('Saving image finished')
 
     return last_img
 
@@ -80,6 +81,11 @@ if __name__ == '__main__':
 
     matplotlib.use('TkAgg')  # TkAgg line is for Mac.
 
-    file_name = sys.argv[1]
+    try:
+        file_name = sys.argv[1]
+    except:
+        print_error('You must enter the image file name')
+        sys.exit()
+
     black_box_return = black_box(PATH + file_name)
     show_image(RESULT_PATH + file_name[:-4] + '_' + RES_NAME)

@@ -1,10 +1,11 @@
+#!/usr/bin/env python
 #-*- coding:utf-8 -*-
 
 import tensorflow as tf
 import time, os
 from tensorflow.examples.tutorials.mnist import input_data
 
-mnist = input_data.read_data_sets('./mnist_data', one_hot=True)
+mnist = input_data.read_data_sets('mnist_data', one_hot=True)
 
 LEARNING_RATE = 0.001
 BATCH_SIZE = 128
@@ -86,7 +87,7 @@ with tf.name_scope('summary'):
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
     saver = tf.train.Saver()
-    writer = tf.summary.FileWriter('./mnist_graph', sess.graph)
+    writer = tf.summary.FileWriter('mnist_graph', sess.graph)
 
     if not os.path.isdir(os.getcwd() + '/checkpoints'):
         os.mkdir(os.getcwd() + '/checkpoints')
