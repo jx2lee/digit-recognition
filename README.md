@@ -82,7 +82,7 @@ contour details	 x :  1035 y :  1655 w :  132 h :  14 (1675, 1200, 3) 0.07880597
 
 In addition to sample1.jpg, the result is created in the `res/{file_name}_blackbox.jps` after execution with other jpg.  
 
-![sample output](/blackbox_sample.jpg)
+![sample output](predict-digit/blackbox_sample.jpg)
 
 #### Preprocess Data
 Preprocess the training data using `preprocess.py`. Data needed for pre-processing is moved to `tmp / box` and executed. How to use is as follows:  
