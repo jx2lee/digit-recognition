@@ -112,7 +112,7 @@ drwxr-xr-x   6 jj  staff     192  1 27 17:45 model_checkpoint/
 -rw-r--r--   1 jj  staff  619795  5 23 21:41 sample1_blackboxed.jpg
 ```
 
-#### Train Model & Test Model
+#### Train Model & Prediction
 **Train Model:**  
 For model training, use `main.py`. Instructions to train is as follows:  
 ```bash
