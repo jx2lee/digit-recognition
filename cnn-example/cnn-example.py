@@ -5,6 +5,12 @@ import tensorflow as tf
 import time, os
 from tensorflow.examples.tutorials.mnist import input_data
 
+# except for WARNING LOG
+## start
+old_version = tf.compat.v1.logging.get_verbosity()
+tf.compat.v1.logging.set_verbosity(tf.logging.ERROR)
+## end
+
 mnist = input_data.read_data_sets('mnist_data', one_hot=True)
 
 LEARNING_RATE = 0.001

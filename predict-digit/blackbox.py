@@ -37,7 +37,7 @@ def black_box(input_path):
 
     img_to_gray = cv2.cvtColor(first_img, cv2.COLOR_BGR2GRAY)
     _, thresh = cv2.threshold(img_to_gray, 127, 255, 0)
-    _, contours, _ = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    contours, _ = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
     # first-contours
     for c in contours:
@@ -51,7 +51,7 @@ def black_box(input_path):
     cv2.Canny(img_to_gray_, 50, 200, apertureSize=3)
     blur_ = cv2.blur(img_to_gray_, (5, 5))
     cv2.threshold(blur_, 127, 255, 0)
-    _, contours, _ = cv2.findContours(blur_, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    contours, _ = cv2.findContours(blur_, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
     # second-contours
     idx = 0
@@ -77,9 +77,11 @@ def black_box(input_path):
 
 if __name__ == '__main__':
     import matplotlib
+    import os
     import sys
 
     matplotlib.use('TkAgg')  # TkAgg line is for Mac.
+    os.environ['TK_SILENCE_DEPRECATION'] = '1'
 
     try:
         file_name = sys.argv[1]

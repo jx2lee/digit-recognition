@@ -1,21 +1,37 @@
 #!/usr/bin/env python
-
 if __name__ == "__main__":
+    from core.common import *
+    from core.model import *
+    import os
     import sys
-    import core.model as model
+    import tensorflow
 
     TRAIN_DATA_PATH = 'tmp/Fnt/'
-    mode = sys.argv[1]
-    if mode == "train":
-        EPOCH = int(sys.argv[2])
-        BATCH_SIZE = int(sys.argv[3])
-        MODEL_CHECK_POINT = 'res/model_checkpoint/LetterCNN.ckpt'
-        all_x, all_y = model.import_data(TRAIN_DATA_PATH)
-        x_train, x_test, y_train, y_test = model.split_data(all_x, all_y)
-        model.train_model(MODEL_CHECK_POINT, EPOCH, x_train, y_train, BATCH_SIZE)
 
+    try:
+        mode = sys.argv[1]
+    except:
+        print_error('Enter the Mode train or test')
+        print(' [USAGE] ./main.py train {epoch} {batch_size}')
+        print(' [USAGE] ./main.py test')
+        sys.exit(1)
+    if mode == "train":
+        try:
+            EPOCH = int(sys.argv[2])
+            BATCH_SIZE = int(sys.argv[3])
+        except:
+            print_error('Enter the epoch and batch size')
+            print(' [USAGE] ./main.py train {epoch} {batch_size}')
+            sys.exit(1)
+        MODEL_CHECK_POINT = 'res/model_checkpoint/LetterCNN.ckpt'
+        all_x, all_y = import_data(TRAIN_DATA_PATH)
+        x_train, x_test, y_train, y_test = split_data(all_x, all_y)
+        train_model(MODEL_CHECK_POINT, EPOCH, x_train, y_train, BATCH_SIZE)
     elif mode == "test":
-        import model
+        INPUT_FOLDER_NAME = 'sample2'
+        prediction(INPUT_FOLDER_NAME)
+    else:
+        print_error('You enter the Mode train test!')
 
 '''
 import tensorflow as tf

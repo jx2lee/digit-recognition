@@ -161,10 +161,11 @@ def level_img(img, _path, _files):
 
 
 if __name__ == '__main__':
-    import errno
-    import os
+    from core.common import *
     import cv2
+    import errno
     import numpy as np
+    import os
 
     FILES = []
     for _, dirs, files in os.walk(BOX_PATH):
@@ -188,3 +189,5 @@ if __name__ == '__main__':
         img_dir = SAVE_PATH + 'char/' + file[:-4] + '/'
         for i in range(len(prep_img)):
             cv2.imwrite(img_dir + file[:-4] + '_' + str(i) + '.png', prep_img[i])
+        print_info("%s preprocess finished!"%(file))
+

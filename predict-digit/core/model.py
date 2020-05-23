@@ -1,21 +1,21 @@
 #!/Users/jj/.virtualenvs/deep/bin/python
-
-
-import tensorflow as tf
-import numpy as np
+from blackbox import show_image
+from core.common import *
+from sklearn.model_selection import train_test_split
 import cv2
-import string
+import numpy as np
 import os
 import re
-from sklearn.model_selection import train_test_split
+import string
+import tensorflow as tf
 
 
 def reset_graph(seed=42):
     """
     Reset Tensorflow graph function
     """
-    tf.reset_default_graph()
-    tf.set_random_seed(seed)
+    tf.compat.v1.reset_default_graph()
+    tf.compat.v1.set_random_seed(seed)
     np.random.seed(seed)
 
 
@@ -148,18 +148,21 @@ def define_model():
     reset_graph()
 
     with tf.name_scope("inputs"):
-        x = tf.placeholder(tf.float32, shape=[None, height, width, channels], name="X")
-        y = tf.placeholder(tf.int32, shape=[None], name="y")
+        x = tf.compat.v1.placeholder(tf.float32, shape=[None, height, width, channels], name="X")
+        y = tf.compat.v1.placeholder(tf.int32, shape=[None], name="y")
 
     conv1 = tf.layers.conv2d(x, filters=conv1_fmaps, kernel_size=conv1_ksize,
                              strides=conv1_stride, padding=conv1_pad,
                              activation=tf.nn.relu, name="conv1")
+    '''conv1 = tf.keras.layers.Conv2D(x, filters=conv1_fmaps, kernel_size=conv1_ksize,
+                             strides=conv1_stride, padding=conv1_pad,
+                             activation=tf.nn.relu, name="conv1")'''
     conv2 = tf.layers.conv2d(conv1, filters=conv2_fmaps, kernel_size=conv2_ksize,
                              strides=conv2_stride, padding=conv2_pad,
                              activation=tf.nn.relu, name="conv2")
 
     with tf.name_scope("pool"):
-        pool3 = tf.nn.max_pool(conv2, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding="VALID")
+        pool3 = tf.nn.max_pool2d(conv2, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding="VALID")
         pool3_flat = tf.reshape(pool3, shape=[-1, pool_fmaps * int(height / conv1_stride / conv2_stride / pool_stride) * \
                                               int(width / conv1_stride / conv2_stride / pool_stride)])
     with tf.name_scope("fc1"):
@@ -181,8 +184,8 @@ def define_model():
         accuracy = tf.reduce_mean(tf.cast(correct, tf.float32))
 
     with tf.name_scope("init_and_save"):
-        init = tf.global_variables_initializer()
-        saver = tf.train.Saver()
+        init = tf.compat.v1.global_variables_initializer()
+        saver = tf.compat.v1.train.Saver()
 
     return x, y, y_prob, training_op, accuracy, saver, init
 
@@ -199,7 +202,7 @@ def train_model(checkpoint_path, epochs, x, y, batch_size):
     x_train, x_test, y_train, y_test = split_data(x, y)
     x, y, y_prob, training_op, accuracy, saver, init = define_model()
 
-    with tf.Session() as sess:
+    with tf.compat.v1.Session() as sess:
         init.run()
         for epoch in range(epochs):
 
@@ -212,3 +215,36 @@ def train_model(checkpoint_path, epochs, x, y, batch_size):
             saver.save(sess, checkpoint_path)
 
     print("training finished..")
+
+
+def prediction(input_folder_name):
+    """
+
+    """
+    from matplotlib import pyplot as plt
+    path = "res/char/{}".format(input_folder_name)
+    sample = []
+    for _, _, files in os.walk(path):
+        for file in files:
+            sample.append(file)
+
+    x, _, y_prob, _, _, saver, _ = define_model()
+    checkpoint_path = 'res/model_checkpoint/LetterCNN.ckpt'
+    y_list = alphabet()
+
+    with tf.compat.v1.Session() as sess:
+        saver.restore(sess, checkpoint_path)
+        for i in range(len(sample)):
+            test_image = resize_input(path + '/' + sample[i])
+            test = y_prob.eval(feed_dict={x: test_image})
+            idx = np.argmax(test)
+            print('[PREDICT]:', y_list[idx], '[TARGET]:', '%s/%s'%(path, sample[i]))
+
+
+def resize_input(image):
+    img = cv2.imread(image)
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    img = cv2.resize(img, (128, 128))
+    img = np.expand_dims(img, 2)
+    res = np.expand_dims(img, 0)
+    return res
