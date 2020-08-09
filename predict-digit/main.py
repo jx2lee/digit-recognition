@@ -1,21 +1,66 @@
 #!/usr/bin/env python
+import subprocess
+
+
+def get_info() -> None:
+    print('[Detect VIN Num Using BlackBox Algorithm]')
+    print('Usage:')
+    print('******************************************')
+    print('****** 1) CNN Tutorial                  **')
+    print('****** 2) Blackbox Tutorial             **')
+    print('****** 3) Train model                   **')
+    print('****** 4) Test model                    **')
+    print('******************************************')
+    return
+
+
+def run_cnn_tutorial() -> None:
+    subprocess.run('cnn-example/cnn-example.py', shell=True)
+
+
+def run_blackbox_tutorial() -> None:
+    file_name = input('Enter the file name: ')
+    print()
+
+if __name__ == '__main__':
+    get_info()
+    number = int(input('Select Number: '))
+    if number == 1:
+        run_cnn_tutorial()
+    elif number == 2:
+        print('')
+    elif number == 3:
+        print('')
+    elif number == 4:
+        print('')
+    else:
+        print('')
+
+
+'''
+#!/usr/bin/env python
 if __name__ == "__main__":
-    from core.common import *
+    from core.common import print_error, print_info
     from core.model import *
     import os
     import sys
-    import tensorflow
+    #import tensorflow
 
     TRAIN_DATA_PATH = 'tmp/Fnt/'
 
     try:
         mode = sys.argv[1]
     except:
-        print_error('Enter the Mode train or test')
-        print(' [USAGE] ./main.py train {epoch} {batch_size}')
-        print(' [USAGE] ./main.py test')
+        print_error('Enter the Mode blackbox/train/test')
+        print('-----------------------------------------')
+        print(' [USAGE] ./main.py blackbox {sample_jpg_name}')
+        print('         ./main.py train {epoch} {batch_size}')
+        print('         ./main.py test')
         sys.exit(1)
-    if mode == "train":
+    #mode
+    if mode == 'blackbox':
+        print()
+    elif mode == "train":
         try:
             EPOCH = int(sys.argv[2])
             BATCH_SIZE = int(sys.argv[3])
@@ -32,6 +77,8 @@ if __name__ == "__main__":
         prediction(INPUT_FOLDER_NAME)
     else:
         print_error('You enter the Mode train test!')
+
+'''
 
 '''
 import tensorflow as tf

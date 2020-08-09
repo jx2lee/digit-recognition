@@ -1,12 +1,8 @@
 **/.DS_Store
-
-# cnn-example
-cnn-example/checkpoints/
-cnn-example/mnist_graph/
-cnn-example/mnist_data/
-
-# predict-digit
 **/__pycache__/
 predict-digit/res/char/*
 predict-digit/res/model_checkpoint/*
 predict-digit/tmp/Fnt/
+predict-digit/cnn-example/checkpoints/
+predict-digit/cnn-example/mnist_graph/
+predict-digit/cnn-example/mnist_data/

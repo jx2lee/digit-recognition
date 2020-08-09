@@ -161,13 +161,15 @@ def level_img(img, _path, _files):
 
 
 if __name__ == '__main__':
-    from core.common import *
+    from core.common import print_error, print_info, make_logger
     import cv2
     import errno
     import numpy as np
     import os
 
     FILES = []
+    logger = make_logger()
+
     for _, dirs, files in os.walk(BOX_PATH):
         FILES = files
 
@@ -177,7 +179,7 @@ if __name__ == '__main__':
         img_clean = remove_vertical_line(img_resize)
         cv2.imwrite(SAVE_PATH + 'box/' + file[:-4] + '.png', img_clean)
         prep_img = level_img(img_clean, BOX_PATH, file)
-
+        logger.info("preprocess file, %s"%(file))
         try:
             if not (os.path.isdir(SAVE_PATH + 'char/' + file[:-4])):
                 os.makedirs(os.path.join(SAVE_PATH + 'char/' + file[:-4]))
@@ -185,9 +187,9 @@ if __name__ == '__main__':
             if e.errno != errno.EEXIST:
                 print_error('Failed to create directory, check your path')
                 raise
-
         img_dir = SAVE_PATH + 'char/' + file[:-4] + '/'
         for i in range(len(prep_img)):
             cv2.imwrite(img_dir + file[:-4] + '_' + str(i) + '.png', prep_img[i])
+            logger.info("save image %s"%(img_dir + file[:-4] + '_' + str(i) + '.png'))
         print_info("%s preprocess finished!"%(file))
 

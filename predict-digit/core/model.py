@@ -132,12 +132,12 @@ def define_model():
     conv1_fmaps = 8
     conv1_ksize = 5
     conv1_stride = 1
-    conv1_pad = "SAME"
+    conv1_pad = "same"
 
     conv2_fmaps = 4
     conv2_ksize = 3
     conv2_stride = 2
-    conv2_pad = "SAME"
+    conv2_pad = "same"
 
     pool_fmaps = conv2_fmaps
     pool_stride = 2
@@ -151,15 +151,12 @@ def define_model():
         x = tf.compat.v1.placeholder(tf.float32, shape=[None, height, width, channels], name="X")
         y = tf.compat.v1.placeholder(tf.int32, shape=[None], name="y")
 
-    conv1 = tf.layers.conv2d(x, filters=conv1_fmaps, kernel_size=conv1_ksize,
-                             strides=conv1_stride, padding=conv1_pad,
-                             activation=tf.nn.relu, name="conv1")
-    '''conv1 = tf.keras.layers.Conv2D(x, filters=conv1_fmaps, kernel_size=conv1_ksize,
-                             strides=conv1_stride, padding=conv1_pad,
-                             activation=tf.nn.relu, name="conv1")'''
-    conv2 = tf.layers.conv2d(conv1, filters=conv2_fmaps, kernel_size=conv2_ksize,
-                             strides=conv2_stride, padding=conv2_pad,
-                             activation=tf.nn.relu, name="conv2")
+    conv1 = tf.keras.layers.Conv2D(filters=conv1_fmaps, kernel_size=conv1_ksize, \
+                             strides=conv1_stride, padding=conv1_pad, \
+                             activation=tf.nn.relu, name="conv1")(x)
+    conv2 = tf.keras.layers.Conv2D(filters=conv2_fmaps, kernel_size=conv2_ksize, \
+                             strides=conv2_stride, padding=conv2_pad, \
+                             activation=tf.nn.relu, name="conv2")(conv1)
 
     with tf.name_scope("pool"):
         pool3 = tf.nn.max_pool2d(conv2, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding="VALID")

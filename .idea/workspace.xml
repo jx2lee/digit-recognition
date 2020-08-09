@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="27a2e430-d555-47ac-bc03-af58a9c760c3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/cnn-example/cnn-example.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cnn-example/cnn-summary.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/predict-digit/blackbox.py" beforeDir="false" afterPath="$PROJECT_DIR$/predict-digit/blackbox.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/predict-digit/core/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/predict-digit/core/common.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/predict-digit/core/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/predict-digit/core/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/predict-digit/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/predict-digit/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/predict-digit/preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/predict-digit/preprocessing.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1frOS06Vw3rKqe0j0oQBQS8ZBJj" />
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="27a2e430-d555-47ac-bc03-af58a9c760c3" name="Default Changelist" comment="" />
+      <created>1596972741544</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1596972741544</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

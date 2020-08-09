@@ -12,7 +12,11 @@ def show_image(img_path):
     :param img_path: Image Path you want to show
     :return: no value, show image
     """
-    from matplotlib import pyplot as plt
+    import matplotlib
+    import matplotlib.pyplot as plt
+    import platform
+    if platform.system() == 'Darwin':
+        matplotlib.use("TkAgg")
 
     dpi = 200  # control parameter
     im_data = plt.imread(img_path)
@@ -31,7 +35,10 @@ def black_box(input_path):
     :param input_path: image path
     :return: cv2 object(list) by black-box algorithm
     """
+    from core.common import make_logger
     import cv2
+
+    logger = make_logger()
     raw_image = cv2.imread(input_path)
     first_img = raw_image.copy()
 
@@ -62,32 +69,26 @@ def black_box(input_path):
         if (w / h > 8) & (w / h < 15):
             cv2.rectangle(last_img, (x, y), (x + w + 10, y + h), (0, 255, 0), 3)
             cv2.putText(last_img, str(idx), (x, y), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 4)
-            print("contour details\t", 'x : ', x, 'y : ', y, 'w : ', w, 'h : ', h, channel, w / channel[0]
-                  , h / channel[1], w / h)
+            print("[CONTOUR DETAILS]\t", 'x: ', x, "\t", 'y: ', y, "\t", 'w: ', w, "\t", 'h: ', h, '\tchannel: ', channel, '|', w / channel[0], '|', h / channel[1], '|', w / h)
         '''
         if idx == 529:
             cv2.imwrite(SAVE_PATH + "box/" + input_path[-11:-4] + ".png", raw_image[y : y + h, x : x + w])
         '''
 
     cv2.imwrite(RESULT_PATH + input_path[-11:-4] + '_' + RES_NAME, last_img)
-    print_info('Saving image finished')
+    #print_info('Saving image finished')
+    logger.info("Saving image Finished")
 
     return last_img
 
 
 if __name__ == '__main__':
-    import matplotlib
+    import argparse
     import os
     import sys
 
-    matplotlib.use('TkAgg')  # TkAgg line is for Mac.
-    os.environ['TK_SILENCE_DEPRECATION'] = '1'
-
-    try:
-        file_name = sys.argv[1]
-    except:
-        print_error('You must enter the image file name')
-        sys.exit()
-
-    black_box_return = black_box(PATH + file_name)
-    show_image(RESULT_PATH + file_name[:-4] + '_' + RES_NAME)
+    parser = argparse.ArgumentParser(description='Blackbox Tutorial')
+    parser.add_argument('file_name', type=str, 
+            help='Blackbox 알고리즘을 테스트 할 사진파일 이름을 넣으세요(example: python blackbox.py sample1.png)')
+    args = parser.parse_args()
+    black_box(PATH + args.file_name)
