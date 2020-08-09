@@ -1,15 +1,13 @@
 #!/usr/bin/env python
-#-*- coding:utf-8 -*-
+# -*- coding:utf-8 -*-
 
 import tensorflow as tf
 import time, os
 from tensorflow.examples.tutorials.mnist import input_data
 
 # except for WARNING LOG
-## start
 old_version = tf.compat.v1.logging.get_verbosity()
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
-## end
 
 mnist = input_data.read_data_sets('./cnn-example/mnist_data', one_hot=True)
 
@@ -89,13 +87,12 @@ with tf.name_scope('summary'):
         즉 name_scope은 get_variable를 무시한다고 생각하면 됨
 '''
 
-
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
     saver = tf.train.Saver()
     writer = tf.summary.FileWriter('cnn-example/mnist_graph', sess.graph)
 
-    if not os.path.isdir(os.getcwd() + '/cnn-exmaple/checkpoints'):
+    if not os.path.isdir(os.getcwd() + '/cnn-example/checkpoints'):
         os.mkdir(os.getcwd() + '/cnn-example/checkpoints')
 
     ckpt = tf.train.get_checkpoint_state('cnn-example/checkpoints')
@@ -119,14 +116,13 @@ with tf.Session() as sess:
     print("Optimization finished!!!")
     print('Total Time : {0} seconds'.format(time.time() - start_time))
 
-
     n_batches = int(mnist.test.num_examples / BATCH_SIZE)
     total_correct_preds = 0
 
     for i in range(n_batches):
         X_batch, y_batch = mnist.test.next_batch(BATCH_SIZE)
         _, loss_batch, logits_batch = sess.run([optimizer, loss, logits],
-                                                feed_dict={X: X_batch, y: y_batch, dropout: DROPOUT})
+                                               feed_dict={X: X_batch, y: y_batch, dropout: DROPOUT})
         preds = tf.nn.softmax(logits_batch)
         correct_preds = tf.equal(tf.argmax(preds, 1), tf.arg_max(y_batch, 1))
         accuracy = tf.reduce_sum(tf.cast(correct_preds, tf.float32))

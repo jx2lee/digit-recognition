@@ -1,5 +1,4 @@
-#!/Users/jj/.virtualenvs/deep/bin/python
-from blackbox import show_image
+#!/usr/bin/env python3
 from core.common import *
 from sklearn.model_selection import train_test_split
 import cv2
@@ -163,10 +162,10 @@ def define_model():
         pool3_flat = tf.reshape(pool3, shape=[-1, pool_fmaps * int(height / conv1_stride / conv2_stride / pool_stride) * \
                                               int(width / conv1_stride / conv2_stride / pool_stride)])
     with tf.name_scope("fc1"):
-        fc1 = tf.layers.dense(pool3_flat, n_fc1, activation=tf.nn.relu, name="fc1")
+        fc1 = tf.keras.layers.Dense(n_fc1, activation='relu')(pool3_flat)
 
     with tf.name_scope("output"):
-        logits = tf.layers.dense(fc1, n_outputs, name="output")
+        logits = tf.keras.layers.Dense(n_outputs)(fc1)
         y_prob = tf.nn.softmax(logits, name="Y_proba")
 
     with tf.name_scope("train"):

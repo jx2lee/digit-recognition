@@ -1,44 +1,17 @@
 #!/usr/bin/env python
-from core.common import *
-
-PATH = "tmp/"
-RESULT_PATH = "res/"
-RES_NAME = "blackboxed.jpg"
-
-
-def show_image(img_path):
-    """
-    Return Image
-    :param img_path: Image Path you want to show
-    :return: no value, show image
-    """
-    import matplotlib
-    import matplotlib.pyplot as plt
-    import platform
-    if platform.system() == 'Darwin':
-        matplotlib.use("TkAgg")
-
-    dpi = 200  # control parameter
-    im_data = plt.imread(img_path)
-    _channel = im_data.shape
-    fig_size = _channel[0] / float(dpi), _channel[1] / float(dpi)
-
-    plt.figure(figsize=fig_size)
-    plt.xticks([]), plt.yticks([])
-    plt.imshow(im_data)
-    plt.show()
+import argparse
+import core.common as common
+import cv2
+import numpy
 
 
-def black_box(input_path):
+def black_box(input_path: str) -> numpy.ndarray:
     """
     Using Black-Box Algorithm (==Double Contours)
     :param input_path: image path
     :return: cv2 object(list) by black-box algorithm
     """
-    from core.common import make_logger
-    import cv2
-
-    logger = make_logger()
+    logger = common.make_logger()
     raw_image = cv2.imread(input_path)
     first_img = raw_image.copy()
 
@@ -70,25 +43,22 @@ def black_box(input_path):
             cv2.rectangle(last_img, (x, y), (x + w + 10, y + h), (0, 255, 0), 3)
             cv2.putText(last_img, str(idx), (x, y), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 4)
             print("[CONTOUR DETAILS]\t", 'x: ', x, "\t", 'y: ', y, "\t", 'w: ', w, "\t", 'h: ', h, '\tchannel: ', channel, '|', w / channel[0], '|', h / channel[1], '|', w / h)
-        '''
+        '''Set IDX
         if idx == 529:
             cv2.imwrite(SAVE_PATH + "box/" + input_path[-11:-4] + ".png", raw_image[y : y + h, x : x + w])
         '''
 
     cv2.imwrite(RESULT_PATH + input_path[-11:-4] + '_' + RES_NAME, last_img)
-    #print_info('Saving image finished')
     logger.info("Saving image Finished")
-
     return last_img
 
 
 if __name__ == '__main__':
-    import argparse
-    import os
-    import sys
-
+    PATH = "tmp/"
+    RESULT_PATH = "res/"
+    RES_NAME = "blackboxed.jpg"
     parser = argparse.ArgumentParser(description='Blackbox Tutorial')
     parser.add_argument('file_name', type=str, 
-            help='Blackbox 알고리즘을 테스트 할 사진파일 이름을 넣으세요(example: python blackbox.py sample1.png)')
+            help='Blackbox 알고리즘을 테스트 할 파일 이름을 입력. (example: python blackbox.py sample1.png)')
     args = parser.parse_args()
     black_box(PATH + args.file_name)
