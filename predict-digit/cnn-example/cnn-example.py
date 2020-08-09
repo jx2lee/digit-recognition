@@ -93,12 +93,12 @@ with tf.name_scope('summary'):
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
     saver = tf.train.Saver()
-    writer = tf.summary.FileWriter('./cnn-example/mnist_graph', sess.graph)
+    writer = tf.summary.FileWriter('cnn-example/mnist_graph', sess.graph)
 
-    if not os.path.isdir(os.getcwd() + '/checkpoints'):
-        os.mkdir(os.getcwd() + '/checkpoints')
+    if not os.path.isdir(os.getcwd() + '/cnn-exmaple/checkpoints'):
+        os.mkdir(os.getcwd() + '/cnn-example/checkpoints')
 
-    ckpt = tf.train.get_checkpoint_state('checkpoints')
+    ckpt = tf.train.get_checkpoint_state('cnn-example/checkpoints')
     if ckpt and ckpt.model_checkpoint_path:
         saver.restore(sess, ckpt.model_checkpoint_path)
 
@@ -115,7 +115,7 @@ with tf.Session() as sess:
         if (index + 1) % SKIT_STEP == 0:
             print('Average loss at step {}: {:5.1f}'.format(index + 1, total_loss / SKIT_STEP))
             total_loss = 0.0
-            saver.save(sess, './checkpoints/mnist-convnet', index)
+            saver.save(sess, 'cnn-example/checkpoints/mnist-convnet', index)
     print("Optimization finished!!!")
     print('Total Time : {0} seconds'.format(time.time() - start_time))
 

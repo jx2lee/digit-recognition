@@ -3,15 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="27a2e430-d555-47ac-bc03-af58a9c760c3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/predict-digit/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/predict-digit/checkpoints/checkpoint" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/predict-digit/checkpoints/mnist-convnet-19.data-00000-of-00001" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/predict-digit/checkpoints/mnist-convnet-19.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/predict-digit/checkpoints/mnist-convnet-19.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/predict-digit/checkpoints/mnist-convnet-9.data-00000-of-00001" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/predict-digit/checkpoints/mnist-convnet-9.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/predict-digit/checkpoints/mnist-convnet-9.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/predict-digit/cnn-example/cnn-example.py" beforeDir="false" afterPath="$PROJECT_DIR$/predict-digit/cnn-example/cnn-example.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/predict-digit/mnist_data/t10k-images-idx3-ubyte.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/predict-digit/mnist_data/t10k-labels-idx1-ubyte.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/predict-digit/mnist_data/train-images-idx3-ubyte.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/predict-digit/mnist_data/train-labels-idx1-ubyte.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/predict-digit/mnist_graph/events.out.tfevents.1596974626.MacJJ.local" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/predict-digit/mnist_graph/events.out.tfevents.1596974643.MacJJ.local" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/predict-digit/mnist_graph/events.out.tfevents.1596975206.MacJJ.local" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
