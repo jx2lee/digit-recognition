@@ -11,7 +11,7 @@ old_version = tf.compat.v1.logging.get_verbosity()
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 ## end
 
-mnist = input_data.read_data_sets('mnist_data', one_hot=True)
+mnist = input_data.read_data_sets('./cnn-example/mnist_data', one_hot=True)
 
 LEARNING_RATE = 0.001
 BATCH_SIZE = 128
@@ -93,7 +93,7 @@ with tf.name_scope('summary'):
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
     saver = tf.train.Saver()
-    writer = tf.summary.FileWriter('mnist_graph', sess.graph)
+    writer = tf.summary.FileWriter('./cnn-example/mnist_graph', sess.graph)
 
     if not os.path.isdir(os.getcwd() + '/checkpoints'):
         os.mkdir(os.getcwd() + '/checkpoints')

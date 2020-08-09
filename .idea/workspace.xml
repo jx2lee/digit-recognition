@@ -2,19 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="27a2e430-d555-47ac-bc03-af58a9c760c3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/cnn-example/cnn-example.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cnn-example/cnn-summary.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/predict-digit/blackbox.py" beforeDir="false" afterPath="$PROJECT_DIR$/predict-digit/blackbox.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/predict-digit/core/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/predict-digit/core/common.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/predict-digit/core/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/predict-digit/core/model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/predict-digit/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/predict-digit/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/predict-digit/preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/predict-digit/preprocessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/predict-digit/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/predict-digit/cnn-example/cnn-example.py" beforeDir="false" afterPath="$PROJECT_DIR$/predict-digit/cnn-example/cnn-example.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/predict-digit/mnist_data/t10k-images-idx3-ubyte.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/predict-digit/mnist_data/t10k-labels-idx1-ubyte.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/predict-digit/mnist_data/train-images-idx3-ubyte.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/predict-digit/mnist_data/train-labels-idx1-ubyte.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/predict-digit/mnist_graph/events.out.tfevents.1596974626.MacJJ.local" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/predict-digit/mnist_graph/events.out.tfevents.1596974643.MacJJ.local" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/predict-digit/mnist_graph/events.out.tfevents.1596975206.MacJJ.local" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="digit-recognition" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />

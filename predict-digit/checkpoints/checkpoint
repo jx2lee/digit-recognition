@@ -1,0 +1,3 @@
+model_checkpoint_path: "mnist-convnet-19"
+all_model_checkpoint_paths: "mnist-convnet-9"
+all_model_checkpoint_paths: "mnist-convnet-19"
