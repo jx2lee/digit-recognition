@@ -126,57 +126,34 @@ drwxr-xr-x   6 jj  staff     192  1 27 17:45 model_checkpoint/
 **Train Model:**  
 For model training, Enter Num `3`. Instructions to train is as follows:  
 ```bash
-$ python main.py train {epoch: number} {batch_size: number}
-```
-or,  
-```bash
-$ ./main.py train {epoch: number} {batch_size: number}
+[Detect VIN Num Using BlackBox Algorithm]
+Usage:
+******************************************
+****** 1) CNN Tutorial                  **
+****** 2) Blackbox Tutorial             **
+****** 3) Train model                   **
+****** 4) Test model                    **
+******************************************
+Select Number: 3
+...
+...
+
 ```
 
 **Prediction:**  
-For prediction, use `main.py`. Instructions to predict is as follows:  
+For prediction, Enter Num `4`. Instructions to train is as follows:  
 ```bash
-$ python main.py test
-[PREDICT]: I [TARGET]: res/char/sample2/sample2_6.png
-[PREDICT]: Q [TARGET]: res/char/sample2/sample2_7.png
-[PREDICT]: P [TARGET]: res/char/sample2/sample2_5.png
-[PREDICT]: F [TARGET]: res/char/sample2/sample2_4.png
-[PREDICT]: H [TARGET]: res/char/sample2/sample2_0.png
-[PREDICT]: N [TARGET]: res/char/sample2/sample2_1.png
-[PREDICT]: S [TARGET]: res/char/sample2/sample2_3.png
-[PREDICT]: M [TARGET]: res/char/sample2/sample2_2.png
-[PREDICT]: B [TARGET]: res/char/sample2/sample2_15.png
-[PREDICT]: 5 [TARGET]: res/char/sample2/sample2_14.png
-[PREDICT]: B [TARGET]: res/char/sample2/sample2_16.png
-[PREDICT]: Z [TARGET]: res/char/sample2/sample2_13.png
-[PREDICT]: S [TARGET]: res/char/sample2/sample2_12.png
-[PREDICT]: A [TARGET]: res/char/sample2/sample2_10.png
-[PREDICT]: Z [TARGET]: res/char/sample2/sample2_11.png
-[PREDICT]: R [TARGET]: res/char/sample2/sample2_9.png
-[PREDICT]: B [TARGET]: res/char/sample2/sample2_8.png
-```
-or,  
-```bash
-$ ./main.py test
-[PREDICT]: I [TARGET]: res/char/sample2/sample2_6.png
-[PREDICT]: Q [TARGET]: res/char/sample2/sample2_7.png
-[PREDICT]: P [TARGET]: res/char/sample2/sample2_5.png
-[PREDICT]: F [TARGET]: res/char/sample2/sample2_4.png
-[PREDICT]: H [TARGET]: res/char/sample2/sample2_0.png
-[PREDICT]: N [TARGET]: res/char/sample2/sample2_1.png
-[PREDICT]: S [TARGET]: res/char/sample2/sample2_3.png
-[PREDICT]: M [TARGET]: res/char/sample2/sample2_2.png
-[PREDICT]: B [TARGET]: res/char/sample2/sample2_15.png
-[PREDICT]: 5 [TARGET]: res/char/sample2/sample2_14.png
-[PREDICT]: B [TARGET]: res/char/sample2/sample2_16.png
-[PREDICT]: Z [TARGET]: res/char/sample2/sample2_13.png
-[PREDICT]: S [TARGET]: res/char/sample2/sample2_12.png
-[PREDICT]: A [TARGET]: res/char/sample2/sample2_10.png
-[PREDICT]: Z [TARGET]: res/char/sample2/sample2_11.png
-[PREDICT]: R [TARGET]: res/char/sample2/sample2_9.png
-[PREDICT]: B [TARGET]: res/char/sample2/sample2_8.png
-```
+[Detect VIN Num Using BlackBox Algorithm]
+Usage:
+******************************************
+****** 1) CNN Tutorial                  **
+****** 2) Blackbox Tutorial             **
+****** 3) Train model                   **
+****** 4) Test model                    **
+******************************************
+Select Number: 4
 
+```  
 You can check whether the prediction was successful by checking the TARGET file name.
 
 
