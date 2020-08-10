@@ -1,5 +1,5 @@
 **/.DS_Store
-**/.idea/
+.idea/
 **/__pycache__/
 predict-digit/res/char/*
 predict-digit/res/model_checkpoint/*
