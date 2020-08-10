@@ -7,6 +7,7 @@ import os
 import re
 import string
 import tensorflow as tf
+import zipfile
 
 
 def reset_graph(seed=42):
@@ -50,6 +51,9 @@ def import_data(data_path):
     :param data_path: digit data path
     :return: X / y dataset
     """
+    if not os.path.isdir('tmp/Fnt'):
+        with zipfile.ZipFile('tmp/Fnt.zip', 'w') as zip:
+            zip.extractall('tmp/Fnt')
     pwd = data_path
     x, y = [], []
 
@@ -201,13 +205,12 @@ def train_model(checkpoint_path, epochs, x, y, batch_size):
     with tf.compat.v1.Session() as sess:
         init.run()
         for epoch in range(epochs):
-
             for iteration in range(len(x_train) // batch_size):
                 x_batch, y_batch = prepare_batch(x_train, y_train, batch_size)
                 sess.run(training_op, feed_dict={x: x_batch, y: y_batch})
             acc_train = accuracy.eval(feed_dict={x: x_batch, y: y_batch})
             acc_test = accuracy.eval(feed_dict={x: x_test, y: y_test})
-            print(epoch, "Train accuracy:", acc_train, "Test accuracy:", acc_test)
+            print(epoch + 1, "Train accuracy:", acc_train, "Test accuracy:", acc_test)
             saver.save(sess, checkpoint_path)
 
     print("training finished..")
