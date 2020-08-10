@@ -5,87 +5,97 @@ The project folder structure is as follows.
 ```bash
 $ tree -N -L 3
 .
-├── README.md
+├── blackbox.py
+├── blackbox_sample.jpg
 ├── cnn-example
+│   ├── checkpoints
 │   ├── cnn-example.py
-│   └── cnn-summary.md
-└── predict-digit
-    ├── blackbox.py
-    ├── core
-    │   ├── common.py
-    │   └── model.py
-    ├── main.py
-    ├── preprocessing.py
-    ├── res
-    │   ├── box
-    │   └── char
-    └── tmp
-        ├── Fnt.zip
-        ├── box
-        ├── sample1.jpg
-        ├── sample2.jpg
-        └── sample3.jpg
-
-8 directories, 12 files
+│   ├── cnn-summary.md
+│   ├── mnist_data
+│   └── mnist_graph
+├── core
+│   ├── __pycache__
+│   ├── common.py
+│   └── model.py
+├── main.py
+├── preprocessing.py
+├── requirements.txt
+├── res
+│   ├── box
+│   ├── char
+│   ├── model_checkpoint
+│   ├── sample1_blackboxed.jpg
+│   └── sample2_blackboxed.jpg
+└── tmp
+    ├── Fnt
+    ├── Fnt.zip
+    ├── box
+    ├── sample1.jpg
+    ├── sample2.jpg
+    └── sample3.jpg
+13 directories, 15 files
 ```
 
-## Requirements
-The following is a list of Python packages for the above code.  
+## How to use
+### install packages  
 ```bash
-tensorflow		(1.14.0)
-numpy			(1.16.3)
-matplotlib		(3.2.1)
-pillow			(7.1.2)
-
+$ pip install -r requirements.txt
 ```
 
-## Usage
-### cnn-example
-This folder contains examples of predicting MNIST data using CNN models. `cnn-summary.md` is a simple markdown of the cnn model. To run the example:  
+### Start Blackbox Tutorial
 ```bash
-$ python cnn-example.py
+$ python main.py
+[Detect VIN Num Using BlackBox Algorithm]
+Usage:
+******************************************
+****** 1) CNN Tutorial                  **
+****** 2) Blackbox Tutorial             **
+****** 3) Train model                   **
+****** 4) Test model                    **
+******************************************
+Select Number:
 ```
-or,  
+
+
+
+#### 1) CNN Tutorial
 ```bash
-$ ./cnn-example.py
-```
+$ python main.py
+[Detect VIN Num Using BlackBox Algorithm]
+Usage:
+******************************************
+****** 1) CNN Tutorial                  **
+****** 2) Blackbox Tutorial             **
+****** 3) Train model                   **
+****** 4) Test model                    **
+******************************************
+Select Number: 1
+```  
+When the code is executed, the `mnist_data`, `mnist_graph`, `checkpoints` folders are created. It stores each mnist
+data and learning results.
 
-When the code is executed, the `mnist_data` and` mnist_graph` folders are created. It stores each mnist data and learning results.
 
 
-### predict-digit
-The vehicle identification number is detected in the photo of the vehicle registration card and predicted. Here is an introduction to python scripts:  
-- `blackbox.py`: Blackbox algorithm test file that detects the vehicle identification number
-- `core`
-   - `common.py`: Includes mainly used functions
-   - `model.py`: CNN model training file
-- `main.py`: project main file
-- `preprocess.py`: A file that converts a photo of a car registration certificate in the` tmp` folder into data before learning
-
-#### Algorithm test
-You can test the blackbox algorithm using `blackbox.py`. How to use is as follows:  
+#### 2) Blackbox Tutorial
+You can test the blackbox algorithm . How to use is as follows:  
 ```bash
-$ python blackbox.py sample1.jpg
-contour details	 x :  1035 y :  1655 w :  132 h :  14 (1675, 1200, 3) 0.07880597014925374
-...
-...
- [INFO] Saving image finished
-```
-or,  
-```bash
-$ ./blackbox.py sample1.jpg
-contour details	 x :  1035 y :  1655 w :  132 h :  14 (1675, 1200, 3) 0.07880597014925374
-...
-...
- [INFO] Saving image finished
-```
-
+$ python main.py
+[Detect VIN Num Using BlackBox Algorithm]
+Usage:
+******************************************
+****** 1) CNN Tutorial                  **
+****** 2) Blackbox Tutorial             **
+****** 3) Train model                   **
+****** 4) Test model                    **
+******************************************
+Select Number: 2
+```  
 In addition to sample1.jpg, the result is created in the `res/{file_name}_blackbox.jps` after execution with other jpg.  
 
 ![sample output](predict-digit/blackbox_sample.jpg)
 
 #### Preprocess Data
-Preprocess the training data using `preprocess.py`. Data needed for pre-processing is moved to `tmp / box` and executed. How to use is as follows:  
+Preprocess the training data using `preprocess.py`. Data needed for pre-processing is moved to `tmp/box` and executed.
 ```bash
 $ python preprocessing.py
  [INFO] sample1.png preprocess finished!
@@ -114,7 +124,7 @@ drwxr-xr-x   6 jj  staff     192  1 27 17:45 model_checkpoint/
 
 #### Train Model & Prediction
 **Train Model:**  
-For model training, use `main.py`. Instructions to train is as follows:  
+For model training, Enter Num `3`. Instructions to train is as follows:  
 ```bash
 $ python main.py train {epoch: number} {batch_size: number}
 ```
@@ -171,4 +181,5 @@ You can check whether the prediction was successful by checking the TARGET file 
 
 
 ---
+
 made by *jaejun.lee*  

@@ -51,9 +51,10 @@ def import_data(data_path):
     :param data_path: digit data path
     :return: X / y dataset
     """
-    if not os.path.isdir('tmp/Fnt'):
-        with zipfile.ZipFile('tmp/Fnt.zip', 'w') as zip:
-            zip.extractall('tmp/Fnt')
+    zip_path = os.getcwd() + '/tmp/'
+    if not os.path.isdir(zip_path + 'tmp/Fnt'):
+        with zipfile.ZipFile(zip_path + 'tmp/Fnt.zip') as unzip:
+            unzip.extractall(zip_path + 'tmp')
     pwd = data_path
     x, y = [], []
 
