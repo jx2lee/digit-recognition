@@ -122,7 +122,7 @@ drwxr-xr-x   6 jj  staff     192  1 27 17:45 model_checkpoint/
 -rw-r--r--   1 jj  staff  619795  5 23 21:41 sample1_blackboxed.jpg
 ```
 
-#### Train Model & Prediction
+#### 3-4) Train Model & Prediction
 **Train Model:**  
 For model training, Enter Num `3`. Instructions to train is as follows:  
 ```bash
