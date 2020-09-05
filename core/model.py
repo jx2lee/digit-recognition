@@ -221,7 +221,6 @@ def prediction(input_folder_name):
     """
 
     """
-    from matplotlib import pyplot as plt
     path = "res/char/{}".format(input_folder_name)
     sample = []
     for _, _, files in os.walk(path):
@@ -242,6 +241,11 @@ def prediction(input_folder_name):
 
 
 def resize_input(image):
+    """
+    Resize image
+    :param image: image path for resize
+    :return: res: resized image
+    """
     img = cv2.imread(image)
     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     img = cv2.resize(img, (128, 128))
