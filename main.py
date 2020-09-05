@@ -41,6 +41,12 @@ def run_train_model() -> None:
     train_model(model_checkpoint, epoch, x_train, y_train, batch_size)
 
 
+def run_test_model() -> None:
+    from core.model import define_model, resize_input, prediction
+    folder_name = input('Enter the folder name (ex.sample{1..3}): ')
+    prediction(folder_name)
+
+
 if __name__ == '__main__':
     get_info()
     number = int(input('Select Number: '))
@@ -51,9 +57,10 @@ if __name__ == '__main__':
     elif number == 3:
         run_train_model()
     elif number == 4:
-        print('')
+        run_test_model()
     else:
-        print('')
+        print('Enter the number 1 ~ 4')
+        print('Good Bye..')
 
 
 '''
