@@ -92,7 +92,7 @@ Select Number: 2
 ```  
 In addition to sample1.jpg, the result is created in the `res/{file_name}_blackbox.jps` after execution with other jpg.  
 
-![sample output](predict-digit/blackbox_sample.jpg)
+![sample output](img/blackbox_sample.jpg)
 
 #### Preprocess Data
 Preprocess the training data using `preprocess.py`. Data needed for pre-processing is moved to `tmp/box` and executed.
@@ -110,7 +110,7 @@ $ ./preprocessing.py
  [INFO] sample2.png preprocess finished!
 ```
 
-Data needed for learning is stored in a folder with the file name in the `res / char` folder.  
+Data needed for learning is stored in a folder with the file name in the `res/char` folder.  
 ```bash
 $ ll res/
 total 1304
