@@ -43,6 +43,11 @@ def run_train_model() -> None:
 
 def run_test_model() -> None:
     from core.model import define_model, resize_input, prediction
+
+    # Preprocess test image
+    subprocess.run('python3 preprocessing.py', shell=True)
+
+    # Run Prediction
     folder_name = input('Enter the folder name (ex.sample{1..3}): ')
     prediction(folder_name)
 
