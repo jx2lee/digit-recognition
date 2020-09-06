@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 from core.common import *
 from sklearn.model_selection import train_test_split
-import cv2
 import numpy as np
 import os
 import re
@@ -19,19 +18,6 @@ def reset_graph(seed=42):
     np.random.seed(seed)
 
 
-def image_to_float(img_path):
-    """
-    Image to float function
-    :param img_path: Path To float image file
-    :return thresh: 2d array after gray-scale image
-    """
-    raw = cv2.imread(img_path)
-    gray = cv2.cvtColor(raw, cv2.COLOR_BGR2GRAY)
-    gray = np.expand_dims(gray, axis=2)
-
-    return gray
-
-
 def alphabet():
     """
     Get alphabet
@@ -41,8 +27,7 @@ def alphabet():
         char.append((i + 1) % 10)
     for a in string.ascii_uppercase[:27]:
         char.append(a)
-
-    return char  # ALP #-1 , (0-9) + (A-Z)
+    return char
 
 
 def import_data(data_path):
@@ -71,27 +56,7 @@ def import_data(data_path):
 
     x = np.array(x)
     y = np.array(y)
-
     return x, y
-
-
-'''
-def new_data(data_path):
-    pwd = data_path
-    x_all = []
-    y_all = []
-
-    for path, dirs, files in os.walk(pwd):
-        for file in sorted(files):
-            #print(file)
-            x_all.append(image_to_float(pwd + file))
-            y_all.append(int(re.findall("\d+", file)[0]))
-
-    x_all = np.array(x_all)
-    y_all = np.array(y_all)
-
-    return x_all, y_all
-'''
 
 
 def split_data(x, y):
@@ -114,8 +79,8 @@ def prepare_batch(x_train, y_train, batch_size):
     :return: numpy array - x_batch, y_batch
     """
     all_batch = np.random.randint(0, len(x_train), batch_size)
-    x_batch = np.stack(x_train[idx] for idx in all_batch)
-    y_batch = np.stack(y_train[idx] for idx in all_batch)
+    x_batch = np.stack([x_train[idx] for idx in all_batch])
+    y_batch = np.stack([y_train[idx] for idx in all_batch])
 
     return x_batch, y_batch
 
@@ -177,7 +142,7 @@ def define_model():
         entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(logits=logits, labels=y)
         loss = tf.reduce_mean(entropy)
         global_step = tf.Variable(0, trainable=False, name='global_step')
-        optimizer = tf.train.AdamOptimizer()
+        optimizer = tf.compat.v1.train.AdamOptimizer()
         training_op = optimizer.minimize(loss, global_step=global_step)
 
     with tf.name_scope("eval"):
@@ -202,16 +167,19 @@ def train_model(checkpoint_path, epochs, x, y, batch_size):
     """
     x_train, x_test, y_train, y_test = split_data(x, y)
     x, y, y_prob, training_op, accuracy, saver, init = define_model()
+    train_logger = make_logger('train')
 
     with tf.compat.v1.Session() as sess:
         init.run()
         for epoch in range(epochs):
+            train_logger.info(f'train data size: {len(x_train)},\titeration: {len(x_train) // batch_size}')
             for iteration in range(len(x_train) // batch_size):
                 x_batch, y_batch = prepare_batch(x_train, y_train, batch_size)
                 sess.run(training_op, feed_dict={x: x_batch, y: y_batch})
+                train_logger.info(f'epoch: {epoch + 1},\titeration: {iteration},\ttrain..')
             acc_train = accuracy.eval(feed_dict={x: x_batch, y: y_batch})
             acc_test = accuracy.eval(feed_dict={x: x_test, y: y_test})
-            print(epoch + 1, "Train accuracy:", acc_train, "Test accuracy:", acc_test)
+            train_logger.info(f'Train accuracy:, {acc_train}, Test accuracy:, {acc_test}')
             saver.save(sess, checkpoint_path)
 
     print("training finished..")
@@ -219,7 +187,8 @@ def train_model(checkpoint_path, epochs, x, y, batch_size):
 
 def prediction(input_folder_name):
     """
-
+    predict VIN using trained model
+    :param input_folder_name: folder name for prediction
     """
     path = "res/char/{}".format(input_folder_name)
     sample = []
@@ -238,17 +207,3 @@ def prediction(input_folder_name):
             test = y_prob.eval(feed_dict={x: test_image})
             idx = np.argmax(test)
             print('[PREDICT]:', y_list[idx], '[TARGET]:', '%s/%s'%(path, sample[i]))
-
-
-def resize_input(image):
-    """
-    Resize image
-    :param image: image path for resize
-    :return: res: resized image
-    """
-    img = cv2.imread(image)
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    img = cv2.resize(img, (128, 128))
-    img = np.expand_dims(img, 2)
-    res = np.expand_dims(img, 0)
-    return res
