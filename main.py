@@ -16,7 +16,8 @@ def get_info() -> None:
 
 
 def run_cnn_tutorial() -> None:
-    subprocess.call('cnn-example/cnn-example.py', shell=True)
+    subprocess.call(['python', 'cnn-example/cnn-example.py'])
+    #subprocess.call('cnn-example/cnn-example.py', shell=True)
 
 
 def run_blackbox_tutorial() -> None:
