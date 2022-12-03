@@ -16,7 +16,7 @@ numpy==1.16.6
 opencv-python==4.3.0.36
 opt-einsum==3.3.0
 Pillow==9.3.0
-protobuf==3.12.4
+protobuf==3.18.3
 pyparsing==2.4.7
 python-dateutil==2.8.1
 scikit-learn==0.19.2
